@@ -1,4 +1,13 @@
 import json
+import os
+
+import telebot
+from dotenv import load_dotenv
+load_dotenv()
+
+
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+BOT = telebot.TeleBot(TOKEN)
 
 
 def get_data(filepath="users.json"):

@@ -23,9 +23,17 @@ def save_data(data, filepath="users.json"):
 
 @BOT.message_handler(commands=["start"])
 def start(message):
+    login_button = telebot.types.KeyboardButton("Войти (для сотрудника)")
+    register_button = telebot.types.KeyboardButton("Зарегистрироваться (для сотрудника)")
+    admin_button = telebot.types.KeyboardButton("Админка (для компании)")
+
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    markup.add(login_button, register_button, admin_button)
+
     BOT.send_message(
         message.chat.id,
-        "Добро пожаловать в меню сотрудников компании Company!\n\nВыберите действие."
+        "Добро пожаловать в меню сотрудников компании Company!\n\nВыберите действие, исползуя кнопки.",
+        reply_markup=markup
     )
 
 

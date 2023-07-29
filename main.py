@@ -30,11 +30,22 @@ def start(message):
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
     markup.add(login_button, register_button, admin_button)
 
-    BOT.send_message(
+    menu_message = BOT.send_message(
         message.chat.id,
         "Добро пожаловать в меню сотрудников компании Company!\n\nВыберите действие, исползуя кнопки.",
         reply_markup=markup
     )
+    BOT.register_next_step_handler(menu_message, define_menu_command)
+
+
+def define_menu_command(message):
+    command = message.text
+    if command == "Войти (для сотрудника)":
+        ...
+    elif command == "Зарегистрироваться (для сотрудника)":
+        ...
+    elif command == "Админка (для компании)":
+        ...
 
 
 if __name__ == "__main__":
